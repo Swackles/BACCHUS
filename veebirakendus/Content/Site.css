@@ -1,0 +1,135 @@
+﻿/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+a, p {
+    font-family: Arial;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+main {
+    margin: 0;
+    margin-right: 50px;
+}
+
+header {
+    margin: 0 ;
+    background-color: #1F4E79;
+    color: #5B9BD5;
+    height: 60px;
+}
+
+h1 {
+    margin: 0px 20px 0px 50px !important;
+}
+
+a {
+    text-decoration: none;
+    color: #5B9BD5;
+    font-size: 20px;
+    text-align: center;
+}
+
+    a:first-child {
+        font-family: 'Times New Roman', Times, serif;
+        padding: 5px 0px 5px 0px;
+    }
+
+    a:nth-child(n+2) {
+        width: 200px;
+        padding: 20px 0px 20px 0px;
+    }
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-container {
+    flex: 1 0 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product {
+    flex: 1 0 auto;
+    margin: 10px;
+    border-style: solid;
+    border-color: #5e5e5e;
+    border-width: 2px;
+    padding: 6px;
+}
+
+.false {
+    border-color: #ff0000;
+}
+
+.menu-container {
+    flex: 1 0 20%;
+    max-width: 250px;
+    min-width: 150px;
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+    margin: 0px;
+}
+
+.menu-item {
+    list-style-type: none;
+    background-color: #1F4E79;
+    color: #5B9BD5;
+}
+
+    .menu-item:last-child {
+        border: 2px solid #1F4E79;
+        border-radius: 0px 0px 30px 30px;
+    }
+
+.menu-item.selected:hover menu-button.selected {
+    background-color: #1F4E79 !important;
+    border-color: #1F4E79 !important;
+    color: #5B9BD5 !important;
+}
+
+.menu-item:hover menu-button {
+    background-color: #5B9BD5;
+    border-color: #5B9BD5;
+    color: #1F4E79;
+}
+
+
+.menu-button {
+    color: inherit;
+    background-color: transparent;
+    border-style: none;
+    width: 100%;
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #5B9BD5 !important;
+    border-color: #5B9BD5 !important;
+    color: #1F4E79 !important;
+}
+
+.hidden {
+    display: none;
+}
+
+menu-pointer {
+    padding: 5px 5px 5px 10%;
+    text-align:right;
+}

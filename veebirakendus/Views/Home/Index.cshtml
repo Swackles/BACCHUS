@@ -1,0 +1,69 @@
+﻿@model IEnumerable<veebirakendus.Models.product>
+
+@section style {
+    <link rel="Stylesheet" type="text/css" href="../Content/Home.css" />
+}
+
+@{
+    ViewBag.Title = "Auction Page";
+}
+
+@section script {
+    <script type="text/javascript" src="~/Scripts/home.js"></script>
+}
+
+<div class="product-container flex-container">
+    @{
+        List<string> categories = new List<string>();
+        foreach (var item in Model)
+        {
+            if (categories.IndexOf(item.Category) == -1) { categories.Add(item.Category); }
+            <div id="product-@item.Id" class="flex-container product @item.Category.Replace(" ", "-")">
+                <div class="product-component">
+                    <script>
+                let $@item.Id.Replace("-", "") = setInterval(() => {
+                    let timeRemain = new Date("@item.EndDate.ToString("u")") - new Date().getTime();
+
+                    let days = Math.floor(timeRemain / (1000 * 60 * 60 * 24));
+                    let hours = Math.floor((timeRemain % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minuts = Math.floor((timeRemain % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((timeRemain % (1000 * 60)) / 1000);
+
+                    document.getElementById("TimeRemaining-@item.Id").innerHTML = "Time Remaining: " + days + "d " + hours + "h " + minuts + "m " + seconds + "s";
+
+                    if (timeRemain <= 0) {
+                        clearInterval($@item.Id.Replace("-", ""));
+                        document.getElementById("TimeRemaining-@item.Id").innerHTML = "EXPIRED";
+                    }
+
+                });
+                    </script>
+                    <h2>@item.Name</h2>
+                    <p id="TimeRemaining-@item.Id"></p>
+                    <p>@item.Description</p>
+                </div>
+
+                <form class="product-component" id="bid-@item.Id" onsubmit="return false;" action="">
+                    <h2>Make a bid: </h2>
+                    <br />
+                    <p1>Forname: </p1>
+                    <input type="text" autocomplete="on" placeholder="Forname..." name="forname" />
+                    <br />
+                    <p1>Surname: </p1>
+                    <input type="text" autocomplete="on" placeholder="Surname..." name="surname" />
+                    <br />
+                    <p1>Amount: </p1>
+                    <input type="number" autocomplete="off" name="amount" />
+                    <br />
+                    <input id="submit" onclick="addBid('@item.Id')" type="submit" value="Submit" />
+                </form>
+
+                <div class="product-component hidden">
+                    <p>Your Highest Bid: </p>
+                </div>
+
+            </div>
+        }
+        ViewBag.Products = Model;
+    }
+</div>

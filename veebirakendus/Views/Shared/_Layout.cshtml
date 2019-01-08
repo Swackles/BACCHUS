@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="Stylesheet" type="text/css" href="../Content/Site.css" />
+    <link rel="Stylesheet" type="text/css" href="../Content/normalize.css" />
+    @RenderSection("style")
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    @RenderSection("script")
+
+</head>
+<body>
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <div class="flex-container">
+            <a href="/Home" >
+                <h1 class="title">BACCHUS</h1>
+            </a>            
+            <a href="/history">History</a>
+        </div>
+    </header>
+    <main>
+        <div class="flex-container">
+            <div class="menu-container">
+                <ul class="menu-list flex-container">
+                    @{
+                        if (ViewBag.Products != null)
+                        {
+                            @model IEnumerable<veebirakendus.Models.product>
+
+                            List<string> categories = new List<string>();
+                            foreach (var item in ViewBag.Products)
+                            {
+                                if (categories.IndexOf(item.Category) != -1) { continue; }
+                                categories.Add(item.Category);
+
+                                <li class="menu-item @item.Category.Replace(" ", "-")">
+                                    <button class="menu-button" onclick="filterByCat('@item.Category.Replace(" ", "-")')">
+                                        @item.Category
+                                    </button>                                    
+                                    <div class="menu-pointer-container hidden" >
+                                        @foreach (var productItem in ViewBag.Products)
+                                        {
+                                            if (productItem.Category != item.Category) { continue; }
+                                            <a class="menu-pointer" href="#product-@productItem.Id">@productItem.Name</a><br />
+                                        }
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                    <li class="menu-item">
+                        <button class="menu-button" onclick="filterReset()">RESET</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="product-container flex-container">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>

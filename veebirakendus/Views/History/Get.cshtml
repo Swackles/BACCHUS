@@ -1,0 +1,38 @@
+﻿@model IEnumerable<veebirakendus.Controllers.history>
+<table class="history-table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Expires</th>
+    </tr>
+    @foreach (var itemProduct in Model)
+    {
+        <tr class="product-row @itemProduct.Product.Category.Replace(' ', '-')" onclick="showBids('@itemProduct.Product.Id')">
+            <td>@itemProduct.Product.Name</td>
+            <td>@itemProduct.Product.Description</td>
+            <td>@itemProduct.Product.Category</td>
+            <td>@itemProduct.Product.EndDate.ToString("dd/MM/yyyy HH:mm")</td>
+        </tr>
+        <tr class=" hidden" id="bids-@itemProduct.Product.Id">
+            <td colspan="4">
+                <table class="bid-table">
+                    <tr>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                    @foreach (var itemBid in itemProduct.Bids)
+                    {
+                        <tr>
+                            <td>@itemBid.Amount</td>
+                            <td>@itemBid.BidDate.ToString("dd/MM/yyyy")</td>
+                            <td>@itemBid.BidDate.ToString("HH:mm")</td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+
+    }
+</table>

@@ -1,0 +1,24 @@
+﻿@section style {
+    <link rel="Stylesheet" type="text/css" href="../Content/history.css" />
+}
+
+@{
+    ViewBag.Title = "History Page";
+}
+
+@section script {
+    <script type="text/javascript" src="~/Scripts/History.js"></script>
+}
+
+<div name="getHistory" class="product-container flex-container">
+    <form class="product-form" onsubmit="return false;" action="">
+        <p1>Forname: </p1>
+        <input type="text" autocomplete="on" placeholder="Forname..." name="forname" />
+        <br />
+        <p1>Surname: </p1>
+        <input type="text" autocomplete="on" placeholder="Surname..." name="surname" />
+        <br />
+        <input id="submit" onclick="getHistory()" type="submit" value="Submit" />
+    </form>
+    <table class="hidden"></table>
+</div>

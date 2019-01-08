@@ -1,0 +1,15 @@
+﻿.product-component {
+    flex: 1 0 auto;
+    max-width: 300px;
+    min-width: 300px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 600) {
+    .product-component:first-child {
+        border-bottom: 1px solid #979797;
+    }
+}
+
+@media only screen and (max-width: 590) {
+}
