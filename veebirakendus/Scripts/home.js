@@ -92,7 +92,7 @@ function filterByCat(category) {
         });
         $(".menu-item").each((index, value) => {
             if (index == $(".menu-item").length - 1) return true;
-            if (cat.includes(value.className.split(" ")[1].replace(/-/, " "))) {
+            if (cat.includes(value.className.split(" ")[1].replace(/-/g, " "))) {
                 value.children[0].className += " selected";
                 value.children[1].className = value.children[1].className.replace(/ hidden/g, "");
             } else {
